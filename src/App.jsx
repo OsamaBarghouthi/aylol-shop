@@ -616,29 +616,28 @@ export default function App() {
     loadProducts();
   }, []);
 
-  async function loadProducts() {
-    try {
-      const result = await window.storage.get(STORAGE_KEY, true);
-      if (result && result.value) {
-        setProducts(JSON.parse(result.value));
-      }
-    } catch (e) {
-      // no saved data yet, use defaults
-    } finally {
-      setLoading(false);
+ async function loadProducts() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      setProducts(JSON.parse(saved));
     }
+  } catch (e) {
+    // no saved data yet, use defaults
+  } finally {
+    setLoading(false);
   }
+}
 
-  async function persist(updated) {
-    setProducts(updated);
-    try {
-      const result = await window.storage.set(STORAGE_KEY, JSON.stringify(updated), true);
-      if (!result) setSaveError("Couldn't save changes — please try again.");
-      else setSaveError("");
-    } catch (e) {
-      setSaveError("Storage error — please try again.");
-    }
+async function persist(updated) {
+  setProducts(updated);
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+    setSaveError("");
+  } catch (e) {
+    setSaveError("Couldn't save changes — storage may be full.");
   }
+}
 
   function saveProduct(data) {
     const exists = products.some((p) => p.id === data.id);
