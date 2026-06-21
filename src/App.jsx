@@ -703,7 +703,7 @@ async function persist(updated) {
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Sparkles size={22} className="text-fuchsia-500" />
-            <span className="text-2xl font-black tracking-tight bg-gradient-to-r from-fuchsia-600 to-orange-500 bg-clip-text text-transparent">Aylol</span>
+            <span className="text-2xl font-black tracking-tight bg-gradient-to-r from-fuchsia-600 to-orange-500 bg-clip-text text-transparent">Haziran</span>
           </div>
           <div className="flex items-center gap-2">
             <button onClick={() => setPage("admin-login")} className="w-10 h-10 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200 hover:rotate-90 transition-all duration-300" title="Admin">
